@@ -37,6 +37,9 @@ public class DisplayManager {
 		Display.update();
 		
 		while(Keyboard.next()) {
+			if(Keyboard.isKeyDown(Keyboard.KEY_ESCAPE)){
+				closeDisplay();
+			}
 			if(Keyboard.getEventKeyState()) {
 				if(Keyboard.isKeyDown(Keyboard.KEY_E) && Mouse.isGrabbed()) {
 					Mouse.setGrabbed(false);
