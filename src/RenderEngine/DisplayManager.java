@@ -9,6 +9,8 @@ import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.PixelFormat;
 
+import voxel.MainGameLoop;
+
 public class DisplayManager {
 	
 	private static final int WIDTH = 1280;	
@@ -51,6 +53,7 @@ public class DisplayManager {
 	}
 	
 	public static void closeDisplay() {
+		MainGameLoop.loader1.cleanUp();
 		Display.destroy();
 		System.exit(0);
 	}
