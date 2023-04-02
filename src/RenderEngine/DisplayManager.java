@@ -9,7 +9,7 @@ import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.PixelFormat;
 
-import voxel.MainGameLoop;
+import Voxel.MainGameLoop;
 
 public class DisplayManager {
 	

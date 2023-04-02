@@ -1,4 +1,4 @@
-package voxel;
+package Voxel;
 
 import org.lwjgl.opengl.Display;
 
