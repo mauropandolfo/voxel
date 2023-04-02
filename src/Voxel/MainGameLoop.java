@@ -7,6 +7,8 @@ import RenderEngine.DisplayManager;
 import RenderEngine.Loader;
 import RenderEngine.MasterRenderer;
 import Shaders.StaticShader;
+import Textures.ModelTexture;
+import Textures.TexturedModel;
 
 public class MainGameLoop {
 	
@@ -35,7 +37,16 @@ public class MainGameLoop {
 			2,3,0
 		};
 		
-		RawModel model = loader.loadToVao(vertices, indices);
+		float[] uv = {
+			0, 0,
+			0, 1,
+			1, 1,
+			1, 0
+		};
+		
+		RawModel model = loader.loadToVao(vertices, indices, uv);
+		ModelTexture texture = new ModelTexture(loader.loadTexture("dirtTex"));
+		TexturedModel texturedModel = new TexturedModel(model, texture);
 		
 		while(!Display.isCloseRequested()) {
 			
@@ -43,7 +54,7 @@ public class MainGameLoop {
 			
 			shader.start();
 			
-			renderer.render(model);
+			renderer.render(texturedModel);
 			shader.stop();
 			
 			DisplayManager.updateDisplay();

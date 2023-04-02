@@ -1,5 +1,13 @@
 package Shaders;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL20;
 
@@ -47,30 +55,17 @@ public abstract class ShaderProgram {
 		GL20.glDeleteProgram(programID);
 		
 	}
-	
-	private int loadShader(String shaderSource, int type) {
-
-	    int shaderID = GL20.glCreateShader(type);
-	    GL20.glShaderSource(shaderID, shaderSource);
-	    GL20.glCompileShader(shaderID);
-
-	    if (GL20.glGetShaderi(shaderID, GL20.GL_COMPILE_STATUS) == GL11.GL_FALSE) {
-	        System.out.println(GL20.glGetShaderInfoLog(shaderID, 1000));
-	        System.err.println("ERROR: No se compilo el shader");
-	        System.exit(-1);
-	    }
-	    return shaderID;
-	}
-	
-	/*
-	 * Este metodo debe reemplazar el del mismo nombre en caso de cargar los shaders desde un archivo.
-	 * corregir el error de ruteo.
-	 * 
+	 
 	private int loadShader(String file, int type) {
 		
 		StringBuilder shaderSource = new StringBuilder();
 		
-		InputStream in = Class.class.getResourceAsStream(file);
+		InputStream in = null;
+		try {
+			in = new FileInputStream(new File(file));
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 		BufferedReader reader = new BufferedReader(new InputStreamReader(in));
 		
 		String line;
@@ -100,6 +95,6 @@ public abstract class ShaderProgram {
 		return shaderID;
 		
 	}
-	*/
+	
 	
 }
